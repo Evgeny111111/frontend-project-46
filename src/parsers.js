@@ -1,19 +1,27 @@
 import fs from 'fs';
 import path from 'path';
-import _ from 'lodash';
 import yaml from 'js-yaml';
-function getData(str) {
-  let data = {};
-	const dirName = process.cwd(str);
-	if (str.endsWith('.json')) {
-		str.startsWith('/') ? data = path.resolve(str) : data = path.resolve(dirName, str);
-    return JSON.parse(fs.readFileSync(data));
+
+function getData(filePath) {
+  let resolvedPath;
+
+  // Разрешаем путь к файлу
+  if (filePath.startsWith('/')) {
+    resolvedPath = path.resolve(filePath);
+  } else {
+    resolvedPath = path.resolve(process.cwd(), filePath);
   }
-	if (str.endsWith('.yml') || str.endsWith('.yaml')) {
-		str.startsWith('/') ? data = path.resolve(str) : data = path.resolve(dirName, str);
-    return yaml.load(fs.readFileSync(data));
-	}
+
+  // Чтение файла в зависимости от его расширения
+  if (filePath.endsWith('.json')) {
+    return JSON.parse(fs.readFileSync(resolvedPath, 'utf-8'));
+  }
+  if (filePath.endsWith('.yml') || filePath.endsWith('.yaml')) {
+    return yaml.load(fs.readFileSync(resolvedPath, 'utf-8'));
+  }
+
+  // Если тип файла не поддерживается, выбрасываем ошибку
+  throw new Error(`Unsupported file type: ${filePath}`);
 }
+
 export default getData;
-// gendiff __fixtures__/file1.yml __fixtures__/file2.yml
-// gendiff __fixtures__/file1.json __fixtures__/file2.json
