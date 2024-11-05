@@ -21,4 +21,4 @@ gendiff путь до файла №1 путь до файла №2
 https://asciinema.org/a/lVbw8fvBXrDuI7wadmC8HQmuY
 
 Сравнение плоских файлов (yaml)
-https://asciinema.org/a/m0J7dt9pGXO89uwxRjMOaaNbL
+https://asciinema.org/a/Wu0INIkPRhTdEe5AMkPie4sDP
