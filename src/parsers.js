@@ -1,19 +1,23 @@
 import fs from 'fs';
 import path from 'path';
-import _ from 'lodash';
 import yaml from 'js-yaml';
-function getData(str) {
-  let data = {};
-	const dirName = process.cwd(str);
-	if (str.endsWith('.json')) {
-		str.startsWith('/') ? data = path.resolve(str) : data = path.resolve(dirName, str);
-    return JSON.parse(fs.readFileSync(data));
+
+function getData(filePath) {
+  const resolvedPath = path.resolve(process.cwd(), filePath); // Делаем путь более читаемым
+
+  if (filePath.endsWith('.json')) {
+    return JSON.parse(
+      fs.readFileSync(resolvedPath, 'utf8'), // Добавлена завершающая запятая
+    ); // Читаем и парсим JSON файл
   }
-	if (str.endsWith('.yml') || str.endsWith('.yaml')) {
-		str.startsWith('/') ? data = path.resolve(str) : data = path.resolve(dirName, str);
-    return yaml.load(fs.readFileSync(data));
-	}
+
+  if (filePath.endsWith('.yml') || filePath.endsWith('.yaml')) {
+    return yaml.load(
+      fs.readFileSync(resolvedPath, 'utf8'), // Добавлена завершающая запятая
+    ); // Читаем и парсим YAML файл
+  }
+
+  throw new Error('Unsupported file format'); // Обрабатываем неподдерживаемые форматы
 }
-export default getData;
-// gendiff __fixtures__/file1.yml __fixtures__/file2.yml
-// gendiff __fixtures__/file1.json __fixtures__/file2.json
+
+export default getData; // Убедитесь, что в конце файла нет пустых строк

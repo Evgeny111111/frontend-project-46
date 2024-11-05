@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { Command } from 'commander';
-import genDiff from '../src/genDiff.js'; // Проверьте путь к genDiff
+import genDiff from '../src/index.js'; // Проверьте путь к genDiff
 
 const program = new Command();
 
@@ -16,4 +16,3 @@ program
   });
 
 program.parse();
-
