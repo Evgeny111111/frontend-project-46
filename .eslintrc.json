@@ -1,8 +1,10 @@
 {
   "env": {
+    "browser": true,
     "es2021": true,
     "es6": true,
-    "node": true
+    "node": true,
+    "jest": true  // Убедитесь, что это добавлено
   },
   "extends": ["eslint:recommended"],
   "parserOptions": {
@@ -13,7 +15,6 @@
     "semi": ["error", "always"],
     "no-console": "off",
     "import/extensions": "off",
-    "no-unused-vars": "off",
-    "no-undef": "off"
+    "no-unused-vars": "off"
   }
 }
