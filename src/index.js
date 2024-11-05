@@ -7,10 +7,7 @@ function getDifferentObject(obj1, obj2) {
       const oldValue = obj1[key];
       const newValue = obj2[key];
       if (!_.has(obj2, key)) {
-        return {
-          action: 'deleted',
-          key,
-          oldValue,
+        ret
         };
       }
       if (!_.has(obj1, key)) {
