@@ -1,10 +1,9 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/Evgeny111111/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Evgeny111111/frontend-project-46/actions)
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/52ee8f1381556ffde76c/maintainability)](https://codeclimate.com/github/Evgeny111111/frontend-project-46/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/3b7b3391f0ccb8882317/maintainability)](https://codeclimate.com/github/Evgeny111111/frontend-project-46/maintainability)
 
-[![Test Coverage](https://api.codeclimate.com/v1/badges/52ee8f1381556ffde76c/test_coverage)](https://codeclimate.com/github/Evgeny111111/frontend-project-46/test_coverage)
-
+[![Test Coverage](https://api.codeclimate.com/v1/badges/3b7b3391f0ccb8882317/test_coverage)](https://codeclimate.com/github/Evgeny111111/frontend-project-46/test_coverage)
 ### Вычислитель отличий
 
 ## Минимальные системные требования
