@@ -1,61 +1,23 @@
 import _ from 'lodash';
-import getData from './parsers.js';
+import fs from 'fs';
 
-function getDifferentObject(obj1, obj2) {
-  const allKeys = _.sortBy(_.union(_.keys(obj1), _.keys(obj2)))
-    .map((key) => {
-      const oldValue = obj1[key];
-      const newValue = obj2[key];
-      if (!_.has(obj2, key)) {
-        ret
-        };
-      }
-      if (!_.has(obj1, key)) {
-        return {
-          action: 'added',
-          key,
-          newValue,
-        };
-      }
-      if (oldValue !== newValue) {
-        return {
-          action: 'changed',
-          key,
-          oldValue,
-          newValue,
-        };
-      }
-      return {
-        action: 'unchanged',
-        key,
-        oldValue,
-      };
-    })
-    .map((item) => {
-      const result = [];
-      if (item.action === 'deleted') {
-        result.push(`  - ${item.key}: ${item.oldValue}\n`);
-      }
-      if (item.action === 'unchanged') {
-        result.push(`    ${item.key}: ${item.oldValue}\n`);
-      }
-      if (item.action === 'changed') {
-        result.push(`  - ${item.key}: ${item.oldValue}\n`);
-        result.push(`  + ${item.key}: ${item.newValue}\n`);
-      }
-      if (item.action === 'added') {
-        result.push(`  + ${item.key}: ${item.newValue}`);
-      }
-      return result;
-    });
-  return `{\n${allKeys.flat().join('')}\n}`;
-}
+const genDiff = (filepath1, filepath2) => {
+  const data1 = JSON.parse(fs.readFileSync(filepath1, 'utf-8'));
+  const data2 = JSON.parse(fs.readFileSync(filepath2, 'utf-8'));
 
-function genDiff(filepath1, filepath2) {
-  const dataFile1 = getData(filepath1);
-  const dataFile2 = getData(filepath2);
-  const result = getDifferentObject(dataFile1, dataFile2);
-  return result;
-}
+  const keys = _.union(Object.keys(data1), Object.keys(data2));
+  const sortedKeys = _.sortBy(keys);
 
+  const result = sortedKeys.map((key) => {
+    if (!(key in data1)) {
+      return `  + ${key}: ${data2[key]}`;
+    } if (!(key in data2)) {
+      return `  - ${key}: ${data1[key]}`;
+    } if (data1[key] !== data2[key]) {
+      return `  - ${key}: ${data1[key]}\n  + ${key}: ${data2[key]}`;
+    }
+    return `    ${key}: ${data1[key]}`;
+  });
+  return `{\n${result.join('\n')}\n}`;
+};
 export default genDiff;
