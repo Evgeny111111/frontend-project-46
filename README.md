@@ -19,3 +19,6 @@ gendiff путь до файла №1 путь до файла №2
 
 Видео инструкция и пример работы программы со всеми форматами и структурами файлов:
 https://asciinema.org/a/lVbw8fvBXrDuI7wadmC8HQmuY
+
+Сравнение плоских файлов (yaml)
+https://asciinema.org/a/m0J7dt9pGXO89uwxRjMOaaNbL
