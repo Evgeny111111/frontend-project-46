@@ -1,5 +1,4 @@
 import genDiff from '../src/index.js';
-
 test('Compare two JSON files', () => {
   const filepath1 = '__fixtures__/file1.json';
   const filepath2 = '__fixtures__/file2.json';
@@ -14,7 +13,6 @@ test('Compare two JSON files', () => {
 }`.trim();
   expect(genDiff(filepath1, filepath2)).toEqual(expectedOutput);
 });
-
 test('Compare two YAML files', () => {
   const filepath1 = '__fixtures__/file1.yml';
   const filepath2 = '__fixtures__/file2.yml';
