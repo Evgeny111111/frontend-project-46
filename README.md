@@ -16,11 +16,11 @@ make install
 gendiff -h - показать справку
 gendiff путь до файла №1 путь до файла №2
 
-##Видео инструкция и пример работы программы со всеми форматами и структурами файлов:
-#https://asciinema.org/a/lVbw8fvBXrDuI7wadmC8HQmuY
+## Видео инструкция и пример работы программы со всеми форматами и структурами файлов:
+# https://asciinema.org/a/lVbw8fvBXrDuI7wadmC8HQmuY
 
-##Сравнение плоских файлов (yaml)
-#https://asciinema.org/a/Wu0INIkPRhTdEe5AMkPie4sDP
+## Сравнение плоских файлов (yaml)
+# https://asciinema.org/a/Wu0INIkPRhTdEe5AMkPie4sDP
 
-##Рекурсивное сравнение
-#https://asciinema.org/a/tP60fSLZRfzoN5drGkGiMbYPZ
+## Рекурсивное сравнение
+# https://asciinema.org/a/tP60fSLZRfzoN5drGkGiMbYPZ
