@@ -1,4 +1,5 @@
 import genDiff from '../src/index.js';
+
 test('Compare two JSON files', () => {
   const filepath1 = '__fixtures__/file1.json';
   const filepath2 = '__fixtures__/file2.json';
