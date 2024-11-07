@@ -23,4 +23,4 @@ gendiff путь до файла №1 путь до файла №2
 # https://asciinema.org/a/Wu0INIkPRhTdEe5AMkPie4sDP
 
 ## Рекурсивное сравнение
-# https://asciinema.org/a/tP60fSLZRfzoN5drGkGiMbYPZ
+# https://asciinema.org/a/9qCIH4eCCcLvF6b8vMVYA8ZKd
