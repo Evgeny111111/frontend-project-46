@@ -1,64 +1,17 @@
-import _ from 'lodash';
-import getData from './parsers.js';
+import path from 'path';
+import process from 'node:process';
+import format from './formatters/index.js';
+import genDiff from './genDiff.js';
+import parse from './parsers.js';
 
-function getDifferentObject(obj1, obj2) {
-  const allKeys = _.sortBy(_.union(_.keys(obj1), _.keys(obj2)))
-    .map((key) => {
-      const oldValue = obj1[key];
-      const newValue = obj2[key];
-      if (!_.has(obj2, key)) {
-        return {
-          action: 'deleted',
-          key,
-          oldValue,
-        };
-      }
-      if (!_.has(obj1, key)) {
-        return {
-          action: 'added',
-          key,
-          newValue,
-        };
-      }
-      if (oldValue !== newValue) {
-        return {
-          action: 'changed',
-          key,
-          oldValue,
-          newValue,
-        };
-      }
-      return {
-        action: 'unchanged',
-        key,
-        oldValue,
-      };
-    })
-    .map((item) => {
-      const result = [];
-      if (item.action === 'deleted') {
-        result.push(`  - ${item.key}: ${item.oldValue}\n`);
-      }
-      if (item.action === 'unchanged') {
-        result.push(`    ${item.key}: ${item.oldValue}\n`);
-      }
-      if (item.action === 'changed') {
-        result.push(`  - ${item.key}: ${item.oldValue}\n`);
-        result.push(`  + ${item.key}: ${item.newValue}\n`);
-      }
-      if (item.action === 'added') {
-        result.push(`  + ${item.key}: ${item.newValue}`);
-      }
-      return result;
-    });
-  return `{\n${allKeys.flat().join('')}\n}`;
-}
-
-function genDiff(filepath1, filepath2) {
-  const dataFile1 = getData(filepath1);
-  const dataFile2 = getData(filepath2);
-  const result = getDifferentObject(dataFile1, dataFile2);
+function parsePaths(filepath1, filepath2, formatter = 'stylish') {
+  const pathResolved1 = path.resolve(process.cwd(), String(filepath1));
+  const fileContent1 = parse(pathResolved1);
+  const pathResolved2 = path.resolve(process.cwd(), String(filepath2));
+  const fileContent2 = parse(pathResolved2);
+  const difference = genDiff(fileContent1, fileContent2);
+  const result = format(difference, formatter);
   return result;
 }
 
-export default genDiff;
+export default parsePaths;

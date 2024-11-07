@@ -2,14 +2,14 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "description": "[![Actions Status](https://github.com/Evgeny111111/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Evgeny111111/frontend-project-46/actions)",
-  "main": "bin/gendiff.js",
+  "main": "./src/formatters/index.js",
   "type": "module",
   "scripts": {
     "test": "jest --coverage",
     "lint": "eslint ."
   },
   "bin": {
-    "gendiff": "bin/gendiff.js"
+    "gendiff": "./bin/genDiffMain.js"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +23,7 @@
     "yaml": "^2.6.0"
   },
   "devDependencies": {
+    "@jest/globals": "^29.7.0",
     "eslint": "^8.57.1",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.31.0",

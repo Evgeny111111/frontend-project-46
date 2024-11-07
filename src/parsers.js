@@ -1,19 +1,17 @@
 import fs from 'fs';
-import path from 'path';
 import yaml from 'js-yaml';
+import path from 'path';
 
-function getData(filePath) {
-  const resolvedPath = path.resolve(process.cwd(), filePath); // Делаем путь более читаемым
-  if (filePath.endsWith('.json')) {
-    return JSON.parse(
-      fs.readFileSync(resolvedPath, 'utf8'), // Добавлена завершающая запятая
-    ); // Читаем и парсим JSON файл
+function parse(filePath) {
+  const format = path.extname(filePath);
+  switch (format) {
+    case '.json':
+      return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    case '.yml':
+      return yaml.load(fs.readFileSync(filePath, 'utf8'));
+    default:
+      throw new Error(`Element format ${format} doesn't exist`);
   }
-  if (filePath.endsWith('.yml') || filePath.endsWith('.yaml')) {
-    return yaml.load(
-      fs.readFileSync(resolvedPath, 'utf8'), // Добавлена завершающая запятая
-    ); // Читаем и парсим YAML файл
-  }
-  throw new Error('Unsupported file format'); // Обрабатываем неподдерживаемые форматы
 }
-export default getData; // Убедитесь, что в конце файла нет пустых строк
+
+export default parse;
