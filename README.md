@@ -17,10 +17,13 @@ gendiff -h - показать справку
 gendiff путь до файла №1 путь до файла №2
 
 ## Видео инструкция и пример работы программы со всеми форматами и структурами файлов:
-# https://asciinema.org/a/lVbw8fvBXrDuI7wadmC8HQmuY
+ https://asciinema.org/a/lVbw8fvBXrDuI7wadmC8HQmuY
 
 ## Сравнение плоских файлов (yaml)
-# https://asciinema.org/a/Wu0INIkPRhTdEe5AMkPie4sDP
+ https://asciinema.org/a/Wu0INIkPRhTdEe5AMkPie4sDP
 
 ## Рекурсивное сравнение
-# https://asciinema.org/a/9qCIH4eCCcLvF6b8vMVYA8ZKd
+ https://asciinema.org/a/9qCIH4eCCcLvF6b8vMVYA8ZKd
+
+ ## Плоский формат
+ https://asciinema.org/a/VBuJq7tR3s3cvXyvBTLq5Qrvh
