@@ -6,8 +6,8 @@ import parse from './parsers.js';
 
 /**
  * Функция для построения абсолютного пути
- * @param {string} filepath - Путь к файлу (относительный или абсолютный)
- * @returns {string} Абсолютный путь
+ * @param {string} filepath
+ * @returns {string}
  */
 function resolvePath(filepath) {
   return path.resolve(process.cwd(), String(filepath));
