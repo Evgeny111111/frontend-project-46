@@ -1,0 +1,9 @@
+{"version": 2, "width": 180, "height": 46, "timestamp": 1730794351, "env": {"SHELL": "/bin/bash", "TERM": "xterm-256color"}}
+[1.042854, "o", "\u001b[?2004h\u001b]0;passwd@LAPTOP-46NA5V50: ~/frontend-project-46\u0007\u001b[01;32mpasswd@LAPTOP-46NA5V50\u001b[00m:\u001b[01;34m~/frontend-project-46\u001b[00m$ "]
+[9.419796, "o", "\r\u001b[K\u001b]0;passwd@LAPTOP-46NA5V50: ~/frontend-project-46\u0007\u001b[01;32mpasswd@LAPTOP-46NA5V50\u001b[00m:\u001b[01;34m~/frontend-project-46\u001b[00m$ "]
+[9.444642, "o", "\r\u001b[K\u001b]0;passwd@LAPTOP-46NA5V50: ~/frontend-project-46\u0007\u001b[01;32mpasswd@LAPTOP-46NA5V50\u001b[00m:\u001b[01;34m~/frontend-project-46\u001b[00m$ "]
+[9.454619, "o", "\u001b[7mgendiff __fixtures__/file1.json __fixtures__/file2.json -f yaml\u001b[27m"]
+[10.478035, "o", "\r\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[Cgendiff __fixtures__/file1.json __fixtures__/file2.json -f yaml\r\n\u001b[?2004l\r"]
+[11.240867, "o", "{\r\n  - follow: false\r\n    host: hexlet.io\r\n  - proxy: 123.234.53.22\r\n  - timeout: 50\r\n  + timeout: 20\r\n  + verbose: true\r\n}\r\n"]
+[11.262403, "o", "\u001b[?2004h\u001b]0;passwd@LAPTOP-46NA5V50: ~/frontend-project-46\u0007\u001b[01;32mpasswd@LAPTOP-46NA5V50\u001b[00m:\u001b[01;34m~/frontend-project-46\u001b[00m$ "]
+[13.003069, "o", "\u001b[?2004l\r\r\nexit\r\n"]
