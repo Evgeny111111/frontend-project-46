@@ -16,7 +16,7 @@ function plain(difference, pathDepth = '') {
 
     switch (element.type) {
       case 'nested':
-        return plain(element.value, fullPath);
+        return plain(element.value, fullPath);  // Рекурсия для вложенных объектов
       case 'added':
         return `Property '${fullPath}' was added with value: ${isObject(element.value)}`;
       case 'removed':
@@ -24,13 +24,14 @@ function plain(difference, pathDepth = '') {
       case 'changed':
         return `Property '${fullPath}' was updated. From ${isObject(element.prevValue)} to ${isObject(element.value)}`;
       case 'unchanged':
-        return '';
+        return null;  // Используем null для неизмененных элементов
       default:
         throw new Error(`Element type ${element.type} doesn't exist`);
     }
   });
 
-  return result.filter((line) => line !== '').join('\n');
+  // Отфильтровать null значения и соединить результат
+  return result.filter(line => line !== null).join('\n');
 }
 
 export default plain;
