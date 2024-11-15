@@ -17,7 +17,7 @@ gendiff -h - показать справку
 gendiff путь до файла №1 путь до файла №2
 
 ## Видео инструкция и пример работы программы со всеми форматами и структурами файлов:
-<iframe width="100%" height="500" src="https://asciinema.org/a/lVbw8fvBXrDuI7wadmC8HQmuY"frameborder="0"></iframe>
+<iframe width="100%" height="500" src="https://asciinema.org/a/https://asciinema.org/a/lVbw8fvBXrDuI7wadmC8HQmuY autoplay=true" frameborder="0"></iframe>
  
 
 ## Сравнение плоских файлов (yaml)
