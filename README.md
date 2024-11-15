@@ -27,3 +27,6 @@ gendiff путь до файла №1 путь до файла №2
 
  ## Плоский формат
  https://asciinema.org/a/VBuJq7tR3s3cvXyvBTLq5Qrvh
+
+  ## Вывод в json
+  https://asciinema.org/a/kRW3Lj4Iw2NYsinheWmSrGuCg
