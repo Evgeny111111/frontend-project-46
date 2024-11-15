@@ -20,13 +20,13 @@ gendiff путь до файла №1 путь до файла №2
 <a href="https://asciinema.org/a/lVbw8fvBXrDuI7wadmC8HQmuY" target="_blank"><img src="https://asciinema.org/a/lVbw8fvBXrDuI7wadmC8HQmuY.svg" /></a>
 
 ## Сравнение плоских файлов (yaml)
- https://asciinema.org/a/Wu0INIkPRhTdEe5AMkPie4sDP
+ <a href="https://asciinema.org/a/Wu0INIkPRhTdEe5AMkPie4sDP" target="_blank"><img src="https://asciinema.org/a/Wu0INIkPRhTdEe5AMkPie4sDP.svg" /></a>
 
 ## Рекурсивное сравнение
- https://asciinema.org/a/9qCIH4eCCcLvF6b8vMVYA8ZKd
+ <a href="https://asciinema.org/a/9qCIH4eCCcLvF6b8vMVYA8ZKd" target="_blank"><img src="https://asciinema.org/a/9qCIH4eCCcLvF6b8vMVYA8ZKd.svg" /></a>
 
  ## Плоский формат
- https://asciinema.org/a/VBuJq7tR3s3cvXyvBTLq5Qrvh
+ <a href="https://asciinema.org/a/VBuJq7tR3s3cvXyvBTLq5Qrvh" target="_blank"><img src="https://asciinema.org/a/VBuJq7tR3s3cvXyvBTLq5Qrvh.svg" /></a>
 
   ## Вывод в json
-  https://asciinema.org/a/kRW3Lj4Iw2NYsinheWmSrGuCg
+  <a href="https://asciinema.org/a/kRW3Lj4Iw2NYsinheWmSrGuCg" target="_blank"><img src="https://asciinema.org/a/kRW3Lj4Iw2NYsinheWmSrGuCg.svg" /></a>
