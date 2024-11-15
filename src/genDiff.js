@@ -27,7 +27,7 @@ function genDiff(obj1, obj2) {
         value: obj1[key],
       };
     }
-    if (obj1[key] === obj2[key]) {
+    if (_.isEqual(obj1[key], obj2[key])) {
       return {
         key,
         type: 'unchanged',
@@ -37,8 +37,8 @@ function genDiff(obj1, obj2) {
     return {
       key,
       type: 'changed',
-      value: obj2[key],
-      prevValue: obj1[key],
+      value1: obj1[key],
+      value2: obj2[key],
     };
   }), 'key');
 }
