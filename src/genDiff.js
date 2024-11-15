@@ -37,8 +37,8 @@ function genDiff(obj1, obj2) {
     return {
       key,
       type: 'changed',
-      value1: obj1[key],
-      value2: obj2[key],
+      value: obj2[key],
+      prevValue: obj1[key],
     };
   }), 'key');
 }
