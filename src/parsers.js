@@ -1,17 +1,16 @@
-import fs from 'fs';
 import yaml from 'js-yaml';
-import path from 'path';
 
-function parse(filePath) {
-  const format = path.extname(filePath);
+const getFileInfo = (data, format) => {
   switch (format) {
-    case '.json':
-      return JSON.parse(fs.readFileSync(filePath, 'utf8'));
-    case '.yml':
-      return yaml.load(fs.readFileSync(filePath, 'utf8'));
+    case 'json':
+      return JSON.parse(data);
+    case 'yaml':
+      return yaml.load(data);
+    case 'yml':
+      return yaml.load(data);
     default:
-      throw new Error(`Element format ${format} doesn't exist`);
+      throw new Error(`Invalid extension - ${format}`);
   }
-}
+};
 
-export default parse;
+export default getFileInfo;

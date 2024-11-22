@@ -1,29 +1,21 @@
-import path from 'path';
-import process from 'node:process';
-import format from './formatters/index.js';
-import genDiff from './genDiff.js';
-import parse from './parsers.js';
+import * as fs from 'node:fs';
+import * as path from 'node:path';
+import process from 'process';
+import getFileInfo from './parsers.js';
+import gen from './genDiff.js';
+import chooseFormat from './formatters/index.js';
 
-/**
- * Функция для построения абсолютного пути
- * @param {string} filepath
- * @returns {string}
- */
-function resolvePath(filepath) {
-  return path.resolve(process.cwd(), String(filepath));
-}
+const getFilePath = (filepath) => path.resolve(process.cwd(), filepath);
+const readFile = (filepath) => fs.readFileSync(getFilePath(filepath), 'utf-8');
+const getFormat = (filepath) => path.extname(filepath).slice(1);
 
-function parsePaths(filepath1, filepath2, formatter = 'stylish') {
-  const pathResolved1 = resolvePath(filepath1);
-  const fileContent1 = parse(pathResolved1);
+const genDiff = (filepath1, filepath2, format = 'stylish') => {
+  const getDataFromFilepath1 = readFile(filepath1);
+  const getDataFromFilepath2 = readFile(filepath2);
+  const getObjectFromFile1 = getFileInfo(getDataFromFilepath1, getFormat(filepath1));
+  const getObjectFromFile2 = getFileInfo(getDataFromFilepath2, getFormat(filepath2));
+  const diff = gen(getObjectFromFile1, getObjectFromFile2);
+  return chooseFormat(diff, format);
+};
 
-  const pathResolved2 = resolvePath(filepath2);
-  const fileContent2 = parse(pathResolved2);
-
-  const difference = genDiff(fileContent1, fileContent2);
-  const result = format(difference, formatter);
-
-  return result;
-}
-
-export default parsePaths;
+export default genDiff;
