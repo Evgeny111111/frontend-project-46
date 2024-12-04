@@ -13,7 +13,7 @@ function gen(obj1, obj2) {
         value: gen(obj1[key], obj2[key]),
       };
     }
-    if (!_.has(obj1, key) && _.has(obj2, key)) { // Заменили условие
+    if (!_.has(obj1, key) && _.has(obj2, key)) {
       return {
         key,
         type: 'added',

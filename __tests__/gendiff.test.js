@@ -4,7 +4,6 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import parsePaths from '../src/index.js';
 
-// Настройка путей для работы с файлами в __fixtures__
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
