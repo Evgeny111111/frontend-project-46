@@ -47,6 +47,12 @@ test.each([
     format: 'json',
     expected: 'resultJson.txt',
   },
+  {
+    file1: 'file1.json',
+    file2: 'file2.json',
+    format: undefined,
+    expected: 'resultStylish.txt',
+  },
 ])('compare %s and %s with format %s', ({
   file1, file2, format, expected,
 }) => {
