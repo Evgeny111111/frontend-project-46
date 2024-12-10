@@ -2,7 +2,7 @@ import { expect, test } from '@jest/globals';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import parsePaths from '../src/index.js';
+import genDiff from '../src/index.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -60,5 +60,5 @@ test.each([
   const filePath2 = getFixturePath(file2);
   const expectedResult = readFixture(expected);
 
-  expect(parsePaths(filePath1, filePath2, format)).toEqual(expectedResult);
+  expect(genDiff(filePath1, filePath2, format)).toEqual(expectedResult);
 });

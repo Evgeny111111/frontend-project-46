@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-function stringifyValue(value, levelOfDepth) {
+const stringifyValue = (value, levelOfDepth) => {
   if (_.isPlainObject(value)) {
     const indent = ' '.repeat(4 * (levelOfDepth + 1));
     const closingIndent = ' '.repeat(4 * levelOfDepth);
@@ -11,7 +11,7 @@ function stringifyValue(value, levelOfDepth) {
     return `{\n${entries}\n${closingIndent}}`;
   }
   return `${value}`;
-}
+};
 
 function stylish(list) {
   function innerFunc(listOfDifference, levelOfDepth) {

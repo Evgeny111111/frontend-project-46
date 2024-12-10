@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-function gen(obj1, obj2) {
+const buildDiff = (obj1, obj2) => {
   const keys1 = _.sortBy(Object.keys(obj1));
   const keys2 = _.sortBy(Object.keys(obj2));
   const unionKeys = _.union(keys1, keys2);
@@ -10,7 +10,7 @@ function gen(obj1, obj2) {
       return {
         key,
         type: 'nested',
-        value: gen(obj1[key], obj2[key]),
+        value: buildDiff(obj1[key], obj2[key]),
       };
     }
     if (!_.has(obj1, key) && _.has(obj2, key)) {
@@ -41,6 +41,6 @@ function gen(obj1, obj2) {
       prevValue: obj1[key],
     };
   }), 'key');
-}
+};
 
-export default gen;
+export default buildDiff;
