@@ -1,42 +1,49 @@
 import _ from 'lodash';
 
-const stringifyValue = (value, levelOfDepth) => {
+function stringifyValue(value, levelOfDepth) {
   if (_.isPlainObject(value)) {
     const indent = ' '.repeat(4 * (levelOfDepth + 1));
     const closingIndent = ' '.repeat(4 * levelOfDepth);
     const entries = Object.entries(value).map(([key, val]) => {
-      const formattedValue = _.isPlainObject(val) ? stringifyValue(val, levelOfDepth + 1) : val;
+      const formattedValue = _.isPlainObject(val)
+        ? stringifyValue(val, levelOfDepth + 1)
+        : val;
       return `${indent}${key}: ${formattedValue}`;
     }).join('\n');
     return `{\n${entries}\n${closingIndent}}`;
   }
   return `${value}`;
-};
+}
 
 function stylish(list) {
-  function innerFunc(listOfDifference, levelOfDepth) {
-    const countedSpaces = ' '.repeat(4 * levelOfDepth);
-    const result = listOfDifference.map((element) => {
-      const indentationWithoutTwoSpaces = countedSpaces.slice(0, -2);
-      switch (element.type) {
+  function formatDiff(diff, depth) {
+    const indent = ' '.repeat(4 * depth);
+    const shortIndent = indent.slice(0, -2);
+
+    const result = diff.map((node) => {
+      switch (node.type) {
         case 'nested':
-          return `${countedSpaces}${element.key}: {\n${innerFunc(element.value, levelOfDepth + 1)}\n${countedSpaces}}`;
+          return `${indent}${node.key}: {\n${formatDiff(node.children, depth + 1)}\n${indent}}`;
         case 'added':
-          return `${indentationWithoutTwoSpaces}+ ${element.key}: ${stringifyValue(element.value, levelOfDepth)}`;
-        case 'unchanged':
-          return `${indentationWithoutTwoSpaces}  ${element.key}: ${stringifyValue(element.value, levelOfDepth)}`;
+          return `${shortIndent}+ ${node.key}: ${stringifyValue(node.value2, depth)}`;
         case 'removed':
-          return `${indentationWithoutTwoSpaces}- ${element.key}: ${stringifyValue(element.value, levelOfDepth)}`;
+          return `${shortIndent}- ${node.key}: ${stringifyValue(node.value1, depth)}`;
+        case 'unchanged':
+          return `${shortIndent}  ${node.key}: ${stringifyValue(node.value1, depth)}`;
         case 'changed':
-          return `${indentationWithoutTwoSpaces}- ${element.key}: ${stringifyValue(element.prevValue, levelOfDepth)}\n${indentationWithoutTwoSpaces}+ ${element.key}: ${stringifyValue(element.value, levelOfDepth)}`;
+          return [
+            `${shortIndent}- ${node.key}: ${stringifyValue(node.value1, depth)}`,
+            `${shortIndent}+ ${node.key}: ${stringifyValue(node.value2, depth)}`,
+          ].join('\n');
         default:
-          throw new Error(`Element type ${element.type} doesn't exist`);
+          throw new Error(`Unknown type: ${node.type}`);
       }
     });
+
     return result.join('\n');
   }
-  const result = innerFunc(list, 1);
-  return `{\n${result}\n}`;
+
+  return `{\n${formatDiff(list, 1)}\n}`;
 }
 
 export default stylish;

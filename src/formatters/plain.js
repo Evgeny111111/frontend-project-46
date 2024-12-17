@@ -20,20 +20,20 @@ function plain(difference, pathDepth = '') {
 
       switch (element.type) {
         case 'nested':
-          return plain(element.value, fullPath);
+          return plain(element.children, fullPath); // Используем `children` вместо `value`
         case 'added':
-          return `Property '${fullPath}' was added with value: ${stringifyValue(element.value)}`;
+          return `Property '${fullPath}' was added with value: ${stringifyValue(element.value2)}`;
         case 'removed':
           return `Property '${fullPath}' was removed`;
         case 'changed':
-          return `Property '${fullPath}' was updated. From ${stringifyValue(element.prevValue)} to ${stringifyValue(element.value)}`;
+          return `Property '${fullPath}' was updated. From ${stringifyValue(element.value1)} to ${stringifyValue(element.value2)}`;
         case 'unchanged':
           return '';
         default:
           throw new Error(`Element type '${element.type}' doesn't exist`);
       }
     })
-    .filter(Boolean)
+    .filter(Boolean) // Убираем пустые строки
     .join('\n');
 }
 

@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-const buildDiff = (obj1, obj2) => {
+function gen(obj1, obj2) {
   const keys1 = _.sortBy(Object.keys(obj1));
   const keys2 = _.sortBy(Object.keys(obj2));
   const unionKeys = _.union(keys1, keys2);
@@ -10,37 +10,37 @@ const buildDiff = (obj1, obj2) => {
       return {
         key,
         type: 'nested',
-        value: buildDiff(obj1[key], obj2[key]),
+        children: gen(obj1[key], obj2[key]),
       };
     }
     if (!_.has(obj1, key) && _.has(obj2, key)) {
       return {
         key,
         type: 'added',
-        value: obj2[key],
+        value2: obj2[key],
       };
     }
     if (_.has(obj1, key) && !_.has(obj2, key)) {
       return {
         key,
         type: 'removed',
-        value: obj1[key],
+        value1: obj1[key],
       };
     }
     if (_.isEqual(obj1[key], obj2[key])) {
       return {
         key,
         type: 'unchanged',
-        value: obj1[key],
+        value1: obj1[key],
       };
     }
     return {
       key,
       type: 'changed',
-      value: obj2[key],
-      prevValue: obj1[key],
+      value1: obj1[key],
+      value2: obj2[key],
     };
   }), 'key');
-};
+}
 
-export default buildDiff;
+export default gen;
