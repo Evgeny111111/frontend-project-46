@@ -1,40 +1,41 @@
 import _ from 'lodash';
 
-const stringifyValue = (value) => {
-  if (value === null) {
-    return 'null';
-  }
-  if (_.isPlainObject(value)) {
+const stringify = (value) => {
+  if (_.isObject(value)) {
     return '[complex value]';
   }
-  if (Array.isArray(value)) {
-    return '[array value]';
+  if (_.isString(value)) {
+    return `'${value}'`;
   }
-  return (typeof value === 'string') ? `'${value}'` : value;
+  return value;
 };
 
-function plain(difference, pathDepth = '') {
-  return difference
-    .map((element) => {
-      const fullPath = pathDepth ? `${pathDepth}.${element.key}` : element.key;
+const caseAdded = (propertyPath, value) => `Property '${propertyPath}' was added with value: ${stringify(value)}`;
+const caseRemoved = (propertyPath) => `Property '${propertyPath}' was removed`;
+const caseChanged = (propertyPath, oldValue, newValue) => `Property '${propertyPath}' was updated. From ${stringify(oldValue)} to ${stringify(newValue)}`;
 
-      switch (element.type) {
-        case 'nested':
-          return plain(element.children, fullPath); // Используем `children` вместо `value`
-        case 'added':
-          return `Property '${fullPath}' was added with value: ${stringifyValue(element.value)}`;
-        case 'removed':
-          return `Property '${fullPath}' was removed`;
-        case 'changed':
-          return `Property '${fullPath}' was updated. From ${stringifyValue(element.value1)} to ${stringifyValue(element.value2)}`;
-        case 'unchanged':
-          return '';
-        default:
-          throw new Error(`Element type '${element.type}' doesn't exist`);
-      }
-    })
-    .filter(Boolean) // Убираем пустые строки
-    .join('\n');
-}
+const plain = (nodes, path = []) => nodes
+  .filter((node) => node.type !== 'unchanged')
+  .map((node) => {
+    const {
+      type, key, value, value1, value2, children,
+    } = node;
+
+    const propertyPath = [...path, key].join('.');
+
+    switch (type) {
+      case 'nested':
+        return plain(children, [...path, key]);
+      case 'added':
+        return caseAdded(propertyPath, value);
+      case 'removed':
+        return caseRemoved(propertyPath);
+      case 'changed':
+        return caseChanged(propertyPath, value1, value2);
+      default:
+        throw new Error(`Unknown type: ${type}`);
+    }
+  })
+  .join('\n');
 
 export default plain;
