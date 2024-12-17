@@ -22,7 +22,7 @@ function plain(difference, pathDepth = '') {
         case 'nested':
           return plain(element.children, fullPath); // Используем `children` вместо `value`
         case 'added':
-          return `Property '${fullPath}' was added with value: ${stringifyValue(element.value2)}`;
+          return `Property '${fullPath}' was added with value: ${stringifyValue(element.value)}`;
         case 'removed':
           return `Property '${fullPath}' was removed`;
         case 'changed':

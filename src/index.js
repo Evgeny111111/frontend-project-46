@@ -2,7 +2,7 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 import process from 'process';
 import getFileInfo from './parsers.js';
-import gen from './genDiff.js';
+import genDif from './genDiff.js';
 import chooseFormat from './formatters/index.js';
 
 const getFilePath = (filepath) => path.resolve(process.cwd(), filepath);
@@ -14,7 +14,7 @@ const genDiff = (filepath1, filepath2, format = 'stylish') => {
   const getDataFromFilepath2 = readFile(filepath2);
   const getObjectFromFile1 = getFileInfo(getDataFromFilepath1, getFormat(filepath1));
   const getObjectFromFile2 = getFileInfo(getDataFromFilepath2, getFormat(filepath2));
-  const diff = gen(getObjectFromFile1, getObjectFromFile2);
+  const diff = genDif(getObjectFromFile1, getObjectFromFile2);
   return chooseFormat(diff, format);
 };
 

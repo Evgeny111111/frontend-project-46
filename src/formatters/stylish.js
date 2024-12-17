@@ -25,11 +25,11 @@ function stylish(list) {
         case 'nested':
           return `${indent}${node.key}: {\n${formatDiff(node.children, depth + 1)}\n${indent}}`;
         case 'added':
-          return `${shortIndent}+ ${node.key}: ${stringifyValue(node.value2, depth)}`;
+          return `${shortIndent}+ ${node.key}: ${stringifyValue(node.value, depth)}`;
         case 'removed':
-          return `${shortIndent}- ${node.key}: ${stringifyValue(node.value1, depth)}`;
+          return `${shortIndent}- ${node.key}: ${stringifyValue(node.value, depth)}`;
         case 'unchanged':
-          return `${shortIndent}  ${node.key}: ${stringifyValue(node.value1, depth)}`;
+          return `${shortIndent}  ${node.key}: ${stringifyValue(node.value, depth)}`;
         case 'changed':
           return [
             `${shortIndent}- ${node.key}: ${stringifyValue(node.value1, depth)}`,
